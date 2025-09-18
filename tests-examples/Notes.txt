@@ -1,0 +1,44 @@
+How to set up playright infiially: 
+npm init playwright@latest
+
+
+Inside that directory, you can run several commands:
+
+  npx playwright test tests/Demo.spec.js --project=chromium  --headed
+    Favorite debugging command
+
+  npx playwright test
+    Runs the end-to-end tests.
+
+  npx playwright test --ui
+    Starts the interactive UI mode.
+
+  npx playwright test --project=chromium
+    Runs the tests only on Desktop Chrome.
+  
+  npx playwright test --workers 3
+    work in parrellel
+
+  npx playwright test  --headed
+    Runs the test in the GUI
+
+  npx playwright test tests/Demo.spec.js
+  npx playwright test Demo
+    Runs the tests in a specific file.
+
+  npx playwright test --debug
+    Runs the tests in debug mode.
+
+  npx playwright codegen
+    Auto generate tests with Codegen.
+
+We suggest that you begin by typing:
+
+    npx playwright test
+
+And check out the following files:
+  - .\tests\example.spec.js - Example end-to-end test
+  - .\tests-examples\demo-todo-app.spec.js - Demo Todo App end-to-end tests
+  - .\playwright.config.js - Playwright Test configuration
+
+Visit https://playwright.dev/docs/intro for more information.
