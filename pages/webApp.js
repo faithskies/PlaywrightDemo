@@ -10,11 +10,9 @@ exports.LoginPage = class LoginPage {
 
    async gotoLoginPage(){
     await this.page.goto('https://animated-gingersnap-8cf7f2.netlify.app/');
-    // note this is not currently used.. but you could use this for a simple test case of login elemements 
    }
 
    async login(username, password){
-        await this.page.goto('https://animated-gingersnap-8cf7f2.netlify.app/');
         await this.username_textbox.fill(username)
         await this.password_textbox.fill(password)
         await this.login_button.click()
