@@ -4,11 +4,15 @@ import { test, expect } from '@playwright/test';
 // import pages specific functions etc  
 import {LoginPage } from '../pages/login'
 import {MainNavigation} from '../pages/mainNav'
-//import {} from '../pages/webApp'
+import {HelperFunctions} from '../pages/helperFunctions'
+
+
 
 // important variables  - this could be moved to a separate page but, there arent many at this point
 const valid_username = 'admin'
 const valid_password = 'password123'
+
+
 
 test('Test Case 1 - WebApp - Confirm tags: "Feature" "High Priority”', async ({ page }) => {
 
@@ -22,33 +26,64 @@ test('Test Case 1 - WebApp - Confirm tags: "Feature" "High Priority”', async (
   await mainNav.openWebApp()
   // Uses function to ensure we are on the right page.. This could be removed since it seems that the Web App is automatically the default page after login, or you can future proof it in case the order of options changes? 
 
+  /////////TODO: Verify "Implement user authentication" is in the "To Do" column
+  const helperFunctions = new HelperFunctions()
+
+  let allTextContents = await page.getByRole('heading', { name: 'Implement user authentication' }).locator('..').locator('..').locator('..').allTextContents();
+  //it climbs three parents up {.locator('..')} from the 'Implement User..' heading.. then grabs all values from that upper div wrapper that wraps around the 'To Do' 
+  console.log(allTextContents);
+  let searchvalue = 'To Do'
+  await helperFunctions.AllTextSearch(searchvalue, allTextContents)
+
+
+  ////////TODO: Confirm tags: "Feature" "High Priority”
+  allTextContents = await page.getByRole('heading', { name: 'Implement user authentication' }).locator('..').allTextContents();
+  console.log(allTextContents);
+
+  let searchValue = 'Feature'
+  await helperFunctions.AllTextSearch(searchValue, allTextContents)
+  // if the search value is not found then it fails the test 
+
+  searchValue = 'High Priority'
+  await helperFunctions.AllTextSearch(searchValue, allTextContents)
+  // if the search value is not found then it fails the test
+
   await page.pause()
-
-  //TODO: Verify "Implement user authentication" is in the "To Do" column
-
-
-  //TODO: Confirm tags: "Feature" "High Priority”
 
   
 });
 
 test('Test Case 2 - WebApp - Verify Fix Nav bug', async ({ page }) => {
 
-  //login 
+  ///////login 
   const Login = new LoginPage(page)
   await Login.login(valid_username, valid_password)
   // valid username/password is set above as a const. Passes the values to a function withint the LoginPage class in the login.js file
 
-  //navigate to Web App page
+  ///////navigate to Web App page
   const mainNav = new MainNavigation(page)
   await mainNav.openWebApp()
   // Uses function to ensure we are on the right page.. This could be removed since it seems that the Web App is automatically the default page after login, or you can future proof it in case the order of options changes? 
 
   await page.pause()
 
-  //TODO: Verify "Fix navigation bug" is in the "To Do" column
+  ///////TODO: Verify "Fix navigation bug" is in the "To Do" column4
 
-  //TODO: Confirm tags: "Bug"
+  const helperFunctions = new HelperFunctions()
+
+  let allTextContents = await page.getByText('To Do (2)Implement user').allTextContents();
+  // note this will likley break as soon as the order of the test data has changed. 
+  let searchValue = 'Fix navigation bug'
+  await helperFunctions.AllTextSearch(searchValue, allTextContents)
+
+
+  ///////TODO: Confirm tags: "Bug"
+  allTextContents = await page.getByText('Fix navigation bugMenu does').allTextContents();
+  searchValue = 'Bug'
+  console.log(allTextContents);
+
+  await helperFunctions.AllTextSearch(searchValue, allTextContents)
+  // if the search value is not found then it fails the test 
   
 });
 
