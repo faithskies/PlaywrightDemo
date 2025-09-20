@@ -3,6 +3,10 @@ exports.TaskBoard = class TaskBoard {
    constructor(page){
       this.page = page
       this.implementUserAuth_header = page.getByRole('heading', { name: 'Implement user authentication' })
+      this.DesignSys_header = page.getByRole('heading', { name: 'Design system updates' })
+      this.PushNot_header = page.getByRole('heading', { name: 'Push notification system' })
+      this.offlinemode_header = page.getByRole('heading', { name: 'Offline mode' })
+      this.appIconDesign_header = page.getByRole('heading', { name: 'App icon design' })
    
    }
    
