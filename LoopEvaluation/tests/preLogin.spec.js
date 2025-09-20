@@ -23,6 +23,15 @@ test('login page launches sucessfully', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Project Board Login' })).toBeVisible();
 });
 
+test('super simple logging in without page object model', async ({ page }) => {
+  await page.goto('https://animated-gingersnap-8cf7f2.netlify.app/');
+  await page.getByRole('textbox', { name: 'Username' }).fill('admin');
+  await page.getByRole('textbox', { name: 'Password' }).fill('password123');
+  await page.getByRole('button', { name: 'Sign in' }).click();
+  await page.pause()
+  await expect(page.getByRole('heading', { name: 'Projects' })).toBeVisible();
+  await page.pause()
+});
 
 test('login succesfull', async ({ page }) => {
   const Login = new LoginPage(page)
@@ -45,15 +54,6 @@ test('login - failed due to invalid username', async ({ page }) => {
 
 });
 
-test('super simple logging in without page object model', async ({ page }) => {
-  await page.goto('https://animated-gingersnap-8cf7f2.netlify.app/');
-  await page.getByRole('textbox', { name: 'Username' }).fill('admin');
-  await page.getByRole('textbox', { name: 'Password' }).fill('password123');
-  await page.getByRole('button', { name: 'Sign in' }).click();
-  await page.pause()
-  await expect(page.getByRole('heading', { name: 'Projects' })).toBeVisible();
-  await page.pause()
-});
 
 test('Open Marketing Campaign window - Example', async ({ page }) => {
 

@@ -59,8 +59,6 @@ test('Test Case 2 - WebApp - Verify Fix Nav bug', async ({ page }) => {
   await mainNav.openWebApp()
   // Uses function to ensure we are on the right page.. This could be removed since it seems that the Web App is automatically the default page after login, or you can future proof it in case the order of options changes? 
 
-  await page.pause()
-
   //--------TODO: Verify "Fix navigation bug" is in the "To Do" column4
 
   const helperFunctions = new HelperFunctions()
