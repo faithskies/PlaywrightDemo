@@ -13,21 +13,27 @@ import { TaskBoard } from '../pages/taskBoard'
 const valid_username = 'admin'
 const valid_password = 'password123'
 
-test.beforeAll(async ({ page }) => {
-  console.log('This runs once before all tests in this file.');
+// test.beforeEach(async ({ page }) => {
+//   console.log('This runs once before all tests in this file.');
 
-   //------TODO: We assume that all tests start after being successfully logged in 
-  const Login = new LoginPage(page)
-  await Login.login(valid_username, valid_password)
-  // valid username/password is set above as a const. Passes the values to a function withint the LoginPage class in the login.js file
+//    //------TODO: We assume that all tests start after being successfully logged in 
+//   const Login = new LoginPage(page)
+//   await Login.login(valid_username, valid_password)
+//   // valid username/password is set above as a const. Passes the values to a function withint the LoginPage class in the login.js file
 
-});
+// });
 
 
 test('Test Case 1 - WebApp - Implement user authentication - Confirm tags: "Feature" "High Priority”', async ({ page }) => {
 
   let resultFound
   // setup for later expect.. This test is primarily checking to see if values exist. If the value is found it is true
+
+  //------TODO: Successfully login 
+  const Login = new LoginPage(page)
+  await Login.login(valid_username, valid_password)
+  // valid username/password is set above as a const. Passes the values to a function withint the LoginPage class in the login.js file
+
 
   //-----TODO: navigate to Web App page
   const mainNav = new MainNavigation(page)
@@ -65,6 +71,11 @@ test('Test Case 1 - WebApp - Implement user authentication - Confirm tags: "Feat
 
 test('Test Case 2 - WebApp - Verify Fix Nav bug', async ({ page }) => {
 
+  //------TODO: Successfully login 
+  const Login = new LoginPage(page)
+  await Login.login(valid_username, valid_password)
+  // valid username/password is set above as a const. Passes the values to a function withint the LoginPage class in the login.js file
+
   //--------- TODO: navigate to Web App page
   const mainNav = new MainNavigation(page)
   await mainNav.openWebApp()
@@ -95,6 +106,12 @@ test('Test Case 2 - WebApp - Verify Fix Nav bug', async ({ page }) => {
 test('Test Case 3 - WebApp - Verify Design System', async ({ page }) => {
 
   let resultFound
+
+    //------TODO: Successfully login 
+  const Login = new LoginPage(page)
+  await Login.login(valid_username, valid_password)
+  // valid username/password is set above as a const. Passes the values to a function withint the LoginPage class in the login.js file
+
 
   //------TODO: navigate to Web App page
   const mainNav = new MainNavigation(page)
@@ -133,6 +150,12 @@ test('Test Case 3 - WebApp - Verify Design System', async ({ page }) => {
 
 test('Test Case 4 - Mobile Application - Verify Push Not', async ({ page }) => {
 
+    //------TODO: Successfully login 
+  const Login = new LoginPage(page)
+  await Login.login(valid_username, valid_password)
+  // valid username/password is set above as a const. Passes the values to a function withint the LoginPage class in the login.js file
+
+
   //------TODO: navigate to WebApp page
   const MainNav = new MainNavigation(page)
   await MainNav.openMobileApp()
@@ -163,6 +186,12 @@ test('Test Case 5 - Mobile Application - Verify Offline', async ({ page }) => {
 });
 
 test('Test Case 6 - Mobile Application - Verify App icon', async ({ page }) => {
+
+    //------TODO: Successfully login 
+  const Login = new LoginPage(page)
+  await Login.login(valid_username, valid_password)
+  // valid username/password is set above as a const. Passes the values to a function withint the LoginPage class in the login.js file
+
 
   //------TODO:navigate to WebApp page
   const MainNav = new MainNavigation(page)
