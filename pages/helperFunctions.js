@@ -12,6 +12,14 @@ exports.HelperFunctions = class HelperFunctions {
         //return found
         return false
     }
+     async multipleSearchTerms(searchTileForValue, allTileDataByHeader) {
+        for (let i = 0; i < searchTileForValue.length; i++) {
+                //console.log(searchTileForValue[i]); // Access element by index
+                let temp = await this.AllTextSearch(searchTileForValue[i], allTileDataByHeader)
+                return temp
+            } 
+    }
+
 
 }
 
