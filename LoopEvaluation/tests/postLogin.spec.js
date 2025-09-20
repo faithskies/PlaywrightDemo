@@ -29,10 +29,10 @@ test('Test Case 1 - WebApp - Implement user authentication - Confirm tags: "Feat
   const helperFunctions = new HelperFunctions()
 
   let allColumnDataByHeader = await taskBoard.columnByHeader(taskBoard.implementUserAuth_header)
-  let searchvalue = 'To Do' 
+  let searchValueColumn = 'To Do' 
   // we are passing the locator of the UserAuth header and then using that to up several directories to find all text that is within that column
-  resultFound = await helperFunctions.AllTextSearch(searchvalue, allColumnDataByHeader)
-  await expect(resultFound, "Expect search value to exist in the list, if it does not it fails. searchValue: '" + searchvalue + "'").toBe(true);
+  resultFound = await helperFunctions.AllTextSearch(searchValueColumn, allColumnDataByHeader)
+  await expect(resultFound, "Expect search value to exist in the list, if it does not it fails. searchValue: '" + searchValueColumn + "'").toBe(true);
   //checks that the searchvalue 'To Do' was a value within that Column 
 
 
@@ -43,7 +43,7 @@ test('Test Case 1 - WebApp - Implement user authentication - Confirm tags: "Feat
   // sets up an array of values that can be searched for
   resultFound = await helperFunctions.multipleSearchTerms(searchForValues, allTileDataByHeader);
   // This iterates through the searchForValues passing them one by one to the AllTextSearch function where we check if that value exists in the object
-  await expect( resultFound, "Expect search value to exist in the list, if it does not it fails. searchValue: '" + searchvalue + "'" ).toBe(true);
+  await expect( resultFound, "Expect search value to exist in the list, if it does not it fails. searchValues: '" + searchForValues + "'" ).toBe(true);
 
 });
 
@@ -59,23 +59,24 @@ test('Test Case 2 - WebApp - Verify Fix Nav bug', async ({ page }) => {
   await mainNav.openWebApp()
   // Uses function to ensure we are on the right page.. This could be removed since it seems that the Web App is automatically the default page after login, or you can future proof it in case the order of options changes? 
 
-  //--------TODO: Verify "Fix navigation bug" is in the "To Do" column4
-
+  //--------- TODO:Verify "Fix navigation bug" is in the "To Do" column
+  const taskBoard = new TaskBoard(page)
   const helperFunctions = new HelperFunctions()
 
-  let allTextContents = await page.getByText('To Do (2)Implement user').allTextContents();
-  // note this will likley break as soon as the order of the test data has changed. 
-  let searchValue = 'Fix navigation bug'
-  await helperFunctions.AllTextSearch(searchValue, allTextContents)
-
+  let allColumnDataByHeader = await taskBoard.columnByHeader(taskBoard.fixNavigationBug_header)
+  let searchValueColumn = 'To Do' 
+  // we are passing the locator of the UserAuth header and then using that to up several directories to find all text that is within that column
+  resultFound = await helperFunctions.AllTextSearch(searchValueColumn, allColumnDataByHeader)
+  await expect(resultFound, "Expect search value to exist in the list, if it does not it fails. searchValue: '" + searchValueColumn + "'").toBe(true);
+  //checks that the searchvalue 'To Do' was a value within that Column 
 
   //------TODO: Confirm tags: "Bug"
-  allTextContents = await page.getByText('Fix navigation bugMenu does').allTextContents();
-  searchValue = 'Bug'
-  console.log(allTextContents);
-
-  await helperFunctions.AllTextSearch(searchValue, allTextContents)
-  // if the search value is not found then it fails the test 
+  let allTileDataByHeader = await taskBoard.tileByHeader(taskBoard.fixNavigationBug_header) // we are passing the locator of the UserAuth header to find all data within that specific tile
+  let searchValueTile = 'Bug'
+  resultFound = await helperFunctions.AllTextSearch(searchValueTile, allTileDataByHeader)
+  console.log(resultFound);
+  await expect(resultFound, "Expect search value to exist in the list, if it does not it fails. searchValue: '" + searchValueTile + "'" ).toBe(true);
+  // if the search value is not found then it fails the test
 
 });
 
@@ -101,9 +102,9 @@ test('Test Case 3 - WebApp - Verify Design System', async ({ page }) => {
 
   let allColumnDataByHeader = await taskBoard.columnByHeader(taskBoard.DesignSys_header)
   // // we are passing the locator of the UserAuth header and then using that to up several directories to find all text that is within that column
-  let searchvalue = 'In Progress'
-  resultFound = await helperFunctions.AllTextSearch(searchvalue, allColumnDataByHeader)
-  await expect(resultFound, "Expect search value to exist in the list, if it does not it fails. searchValue: '" + searchvalue + "'" ).toBe(true);
+  let searchValueColumn = 'In Progress'
+  resultFound = await helperFunctions.AllTextSearch(searchValueColumn, allColumnDataByHeader)
+  await expect(resultFound, "Expect search value to exist in the list, if it does not it fails. searchValue: '" + searchValueColumn + "'" ).toBe(true);
   //checks that the searchvalue 'To Do' was a value within that Column
 
   //------TODO: Confirm tags: "Design”
@@ -114,7 +115,7 @@ test('Test Case 3 - WebApp - Verify Design System', async ({ page }) => {
   // sets up an array of values to search for. Note, this one techncially only has one value so it could be a variable instead and pass it striaght to AllTextSearch however if we wanted to reuse this for multiple tests, setting it an array could be consistent if there are more often several variables
   resultFound = await helperFunctions.multipleSearchTerms(searchTileForValues, allTileDataByHeader);
   // This iterates through the searchForValues passing them one by one to the AllTextSearch function where we check if that value exists in the object
-  await expect( resultFound, "Expect search value to exist in the list, if it does not it fails. searchValue: '" + searchvalue + "'" ).toBe(true);
+  await expect( resultFound, "Expect search value to exist in the list, if it does not it fails. searchValue: '" + searchTileForValues + "'" ).toBe(true);
 });
 
 
@@ -135,6 +136,7 @@ test('Test Case 4 - Mobile Application - Verify Push Not', async ({ page }) => {
   //await expect(page.getByRole('banner').getByRole('heading', { name: 'Mobile Application' })).toBeVisible();
   //optional -- just ensures that the corrrect window was opened
 
+  await page.pause()
 
   //------TODO: Verify "Push notification system" is in the "To Do" column.
 
@@ -142,18 +144,19 @@ test('Test Case 4 - Mobile Application - Verify Push Not', async ({ page }) => {
   const helperFunctions = new HelperFunctions()
 
   let allColumnDataByHeader = await taskBoard.columnByHeader(taskBoard.PushNot_header) // we are passing the locator of the UserAuth header and then using that to up several directories to find all text that is within that column
-  let searchvalue = 'To Do'
-  resultFound = await helperFunctions.AllTextSearch(searchvalue, allColumnDataByHeader)
-  await expect(resultFound, "Expect search value to exist in the list, if it does not it fails. searchValue: '" + searchvalue + "'" ).toBe(true);
+  
+  let searchValueColumn = 'To Do'
+  resultFound = await helperFunctions.AllTextSearch(searchValueColumn, allColumnDataByHeader)
+  await expect(resultFound, "Expect search value to exist in the list, if it does not it fails. searchValue: '" + searchValueColumn + "'" ).toBe(true);
   //checks that the searchvalue 'To Do' was a value within that Column 
 
   //------TODO: TODO: Confirm tags: "Feature”
 
   let allTileDataByHeader = await taskBoard.tileByHeader(taskBoard.PushNot_header) // we are passing the locator of the UserAuth header to find all data within that specific tile
-  let searchValue = 'Feature'
-  resultFound = await helperFunctions.AllTextSearch(searchValue, allTileDataByHeader)
+  let searchValueTile = 'Feature'
+  resultFound = await helperFunctions.AllTextSearch(searchValueTile, allTileDataByHeader)
   console.log(resultFound);
-  await expect(resultFound, "Expect search value to exist in the list, if it does not it fails. searchValue: '" + searchvalue + "'" ).toBe(true);
+  await expect(resultFound, "Expect search value to exist in the list, if it does not it fails. searchValue: '" + searchValueTile + "'" ).toBe(true);
   // if the search value is not found then it fails the test
 
 
@@ -183,9 +186,9 @@ test('Test Case 5 - Mobile Application - Verify Offline', async ({ page }) => {
       await page.pause()
 
   let allColumnDataByHeader = await taskBoard.columnByHeader(taskBoard.offlinemode_header) // we are passing the locator of the UserAuth header and then using that to up several directories to find all text that is within that column
-  let searchvalue = 'In Progress'
-  resultFound = await helperFunctions.AllTextSearch(searchvalue, allColumnDataByHeader)
-  await expect(resultFound, "Expect search value to exist in the list, if it does not it fails. searchValue: '" + searchvalue + "'" ).toBe(true);
+  let searchValueColumn = 'In Progress'
+  resultFound = await helperFunctions.AllTextSearch(searchValueColumn, allColumnDataByHeader)
+  await expect(resultFound, "Expect search value to exist in the list, if it does not it fails. searchValue: '" + searchValueColumn + "'" ).toBe(true);
   //checks that the searchvalue 'To Do' was a value within that Column 
   
 
@@ -195,7 +198,7 @@ test('Test Case 5 - Mobile Application - Verify Offline', async ({ page }) => {
   let searchForValues = ['Feature', 'High Priority']; // creates an array of values to search for 
   resultFound = await helperFunctions.multipleSearchTerms(searchForValues, allTileDataByHeader);
   // This iterates through the searchForValues passing them one by one to the AllTextSearch function where we check if that value exists in the object
-  await expect( resultFound, "Expect search value to exist in the list, if it does not it fails. searchValue: '" + searchvalue + "'" ).toBe(true);
+  await expect( resultFound, "Expect search value to exist in the list, if it does not it fails. searchValue: '" + searchForValues + "'" ).toBe(true);
 
 });
 
@@ -219,22 +222,21 @@ test('Test Case 6 - Mobile Application - Verify App icon', async ({ page }) => {
   const helperFunctions = new HelperFunctions()
 
   let allColumnDataByHeader = await taskBoard.columnByHeader(taskBoard.appIconDesign_header) // we are passing the locator of the UserAuth header and then using that to up several directories to find all text that is within that column
-  let searchvalue = 'Done'
-  resultFound = await helperFunctions.AllTextSearch(searchvalue, allColumnDataByHeader)
-  await expect(resultFound, "Expect search value to exist in the list, if it does not it fails. searchValue: '" + searchvalue + "'" ).toBe(true);
+  let searchValueColumn = 'Done'
+  resultFound = await helperFunctions.AllTextSearch(searchValueColumn, allColumnDataByHeader)
+  await expect(resultFound, "Expect search value to exist in the list, if it does not it fails. searchValue: '" + searchValueColumn + "'" ).toBe(true);
   //checks that the searchvalue 'To Do' was a value within that Column 
 
 
   //------TODO: Confirm tags: "Design”
 
-  
   let allTileDataByHeader = await taskBoard.tileByHeader(taskBoard.appIconDesign_header) // we are passing the locator of the UserAuth header to find all data within that specific tile
-  let searchValue = 'Design'
-  resultFound = await helperFunctions.AllTextSearch(searchValue, allTileDataByHeader)
+  let searchValueTile = 'Design'
+  resultFound = await helperFunctions.AllTextSearch(searchValueTile, allTileDataByHeader)
   console.log(resultFound);
-  await expect(resultFound, "Expect search value to exist in the list, if it does not it fails. searchValue: '" + searchvalue + "'" ).toBe(true);
-  // if the search value is not found then it fails the test
-
+  await expect(resultFound, "Expect search value to exist in the list, if it does not it fails. searchValue: '" + searchValueTile + "'" ).toBe(true);
+  // if the search value is not found then it fails the tes
+  //
 
 });
 
