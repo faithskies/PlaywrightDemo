@@ -1,5 +1,7 @@
 exports.HelperFunctions = class HelperFunctions {
+    //--- intended for any reusable methods that dont fit into a specific page
 
+    // use this if you only have a single search variable to check the obj for
     async AllTextSearch(searchValue, allTextContents) {
         // let found = false;
         for (const text of allTextContents) {
@@ -9,16 +11,16 @@ exports.HelperFunctions = class HelperFunctions {
             }
         }
         console.log(`The search term "${searchValue}" was NOT found in any element's text content.`);
-        //return found
         return false
     }
-     async multipleSearchTerms(searchTileForValue, allTileDataByHeader) {
+
+    // use this if you have an array of searchable variables to check for. This iterates through them and passes them to AllTextSearch
+    async multipleSearchTerms(searchTileForValue, allTileDataByHeader) {
         for (let i = 0; i < searchTileForValue.length; i++) {
-                //console.log(searchTileForValue[i]); // Access element by index
                 let temp = await this.AllTextSearch(searchTileForValue[i], allTileDataByHeader)
                 return temp
             } 
-    }
+    } 
 
 
 }

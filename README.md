@@ -12,7 +12,7 @@ This tutorial was very helpful in getting me started since I havn't used PlayWri
 
 Playwrights Documentation. https://playwright.dev/docs/intro
 Particularly useful pages for these tests: 
-* Every test needs locators.. So far I primarily found locators via the Visual Studio Playwright extension 'identifiers'. It's in the above tutorial. For feference https://playwright.dev/docs/locators
+* Every test needs locators.. So far I primarily found locators via the Visual Studio Playwright extension 'identifiers'. It's in the above tutorial. For reference https://playwright.dev/docs/locators
 * assertions aka where you expect a result and then verify if that result was met. https://playwright.dev/docs/test-assertions
 * how to create a fixture https://playwright.dev/docs/test-fixtures#creating-a-fixture
 * how to do an action.. for example clicks. https://playwright.dev/docs/input
