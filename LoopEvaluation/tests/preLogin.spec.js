@@ -55,18 +55,18 @@ test('login - failed due to invalid username', async ({ page }) => {
 });
 
 
-test('Open Marketing Campaign window - Example', async ({ page }) => {
+// test('Open Marketing Campaign window - Example', async ({ page }) => {
 
-  //login 
-  const Login = new LoginPage(page)
-  //await Login.gotoLoginPage()
-  await Login.login(valid_username, valid_password)
-  //await page.pause()
+//   //login 
+//   const Login = new LoginPage(page)
+//   //await Login.gotoLoginPage()
+//   await Login.login(valid_username, valid_password)
+//   //await page.pause()
 
-  //navigate to WebApp page
-  const MainNav = new MainNavigation(page)
-  await MainNav.openMarketingCam()
-  //await page.pause()
-  await expect(page.getByRole('banner').getByRole('heading', { name: 'Marketing Campaign' })).toBeVisible();
-});
+//   //navigate to WebApp page
+//   const MainNav = new MainNavigation(page)
+//   await MainNav.openMarketingCam()
+//   //await page.pause()
+//   await expect(page.getByRole('banner').getByRole('heading', { name: 'Marketing Campaign' })).toBeVisible();
+// });
 

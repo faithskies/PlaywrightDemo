@@ -11,9 +11,9 @@ exports.MainNavigation = class MainNavigation {
       this.MarketingCam_button = page.getByRole('button', { name: 'Marketing Campaign Q2' })
 
       //page banner heading along top center of page.. useful to check if Im on the correct page
-      this.webApp_bannerheader = page.page.getByRole('banner').getByRole('heading', { name: 'Web Application' })
-      this.mobApp_bannerheader = page.page.getByRole('banner').getByRole('heading', { name: 'Mobile Application' })
-      this.MarketingCam_bannerheader = page.page.getByRole('banner').getByRole('heading', { name: 'Marketing Campaign' })
+      this.webApp_bannerheader = page.getByRole('banner').getByRole('heading', { name: 'Web Application' })
+      this.mobApp_bannerheader = page.getByRole('banner').getByRole('heading', { name: 'Mobile Application' })
+      this.MarketingCam_bannerheader = page.getByRole('banner').getByRole('heading', { name: 'Marketing Campaign' })
 
    }
 
