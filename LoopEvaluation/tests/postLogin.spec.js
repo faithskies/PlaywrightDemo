@@ -19,8 +19,8 @@ test('Test Case 1 - WebApp - Implement user authentication - Confirm tags: "Feat
 
   //------ Successfully login  & naviagte to correct page 
   await Login.succesfulLogin();
-  await mainNav.openWebApp();
-  await expect(mainNav.webApp_bannerheader).toBeVisible(); //optional test -- just ensures that the corrrect window was opened
+  await mainNav.openWebApp()
+  await expect(mainNav.webApp_bannerheader).toBeVisible() //optional test -- just ensures that the corrrect window was opened
 
   //-----  Verify "Implement user authentication" is in the "To Do" column
   // passes the locator of the specified header and then using that to go up several directories to find all text that is within that column
