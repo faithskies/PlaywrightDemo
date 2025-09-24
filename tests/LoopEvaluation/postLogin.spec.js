@@ -2,10 +2,10 @@
 import { test, expect } from '@playwright/test';
 
 // import pages specific functions etc  
-import { LoginPage } from '../pages/login'
-import { MainNavigation } from '../pages/mainNav'
-import { HelperFunctions } from '../pages/helperFunctions'
-import { TaskBoard } from '../pages/taskBoard'
+import { LoginPage } from '../LoopEvaluation/pages/login'
+import { MainNavigation } from '../LoopEvaluation/pages/mainNav'
+import { HelperFunctions } from '../LoopEvaluation/pages/helperFunctions'
+import { TaskBoard } from '../LoopEvaluation/pages/taskBoard'
 
 // setup for later expect assertions.. This test is primarily checking to see if the search values exist. If the value is found it is true.
 let resultFound

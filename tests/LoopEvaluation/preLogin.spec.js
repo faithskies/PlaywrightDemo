@@ -2,10 +2,10 @@
 import { test, expect } from '@playwright/test';
 
 // import pages specific functions etc  
-import { LoginPage } from '../pages/login'
-import { MainNavigation } from '../pages/mainNav'
-import { HelperFunctions } from '../pages/helperFunctions'
-import { TaskBoard } from '../pages/taskBoard'
+import { LoginPage } from '../LoopEvaluation/pages/login'
+import { MainNavigation } from '../LoopEvaluation/pages/mainNav'
+import { HelperFunctions } from '../LoopEvaluation/pages/helperFunctions'
+import { TaskBoard } from '../LoopEvaluation/pages/taskBoard'
 
 // ------------------------------
 //  These examples are early practice attempts for playwright
