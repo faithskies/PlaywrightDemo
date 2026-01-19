@@ -5,8 +5,8 @@ on:
   pull_request:
     branches: [ main, master, testbranch ]
 jobs:
-  test:
-    timeout-minutes: 60
+  Playwright_Tests:
+    timeout-minutes: 30
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -25,3 +25,27 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
+  Playwright_pytest_Tests:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.13.7'
+ 
+    - name: Install Dependencies
+      run: |
+        pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install playwright
+        playwright install
+        pip install pytest-playwright
+        pip install pytest-mock
+        pip install requests
+ 
+    - name: Run Tests with Pytest
+      run: pytest # --cov=app --cov-report=xml
