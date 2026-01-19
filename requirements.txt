@@ -1,0 +1,5 @@
+#  Sample Pytest Configuration (pytest.ini)
+
+# pip install pytest pytest-cov
+pytest==9.0.2
+#addopts = --strict-markers --tb=short --disable-warnings --cov=app --cov-report=xml
