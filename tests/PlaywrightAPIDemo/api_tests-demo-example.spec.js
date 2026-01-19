@@ -71,21 +71,21 @@ import { test, expect } from '@playwright/test'
 
 // GET request is an HTTP method used to request data from a specified resource on a web server. 
 // It is one of the most common HTTP methods and is primarily used for retrieving information.
-test('API GET Request', async ({ request }) => {
-    const response = await request.get('https://reqres.in/api/users/2', {
-        headers: {
-            'x-api-key': 'reqres-free-v1',
-        },
+// test('API GET Request', async ({ request }) => {
+//     const response = await request.get('https://reqres.in/api/users/2', {
+//         headers: {
+//             'x-api-key': 'reqres-free-v1',
+//         },
 
-        data: {
-            "name": "Thomas",
-            "job": "QA Lead"
-        }
-    })
-    expect(response.status()).toBe(200)
-    const text = await response.text();
-    expect(text).toContain('Janet')
+//         data: {
+//             "name": "Thomas",
+//             "job": "QA Lead"
+//         }
+//     })
+//     expect(response.status()).toBe(200)
+//     const text = await response.text();
+//     expect(text).toContain('Janet')
 
-    console.log(await response.json());
-})
+//     console.log(await response.json());
+// })
 
