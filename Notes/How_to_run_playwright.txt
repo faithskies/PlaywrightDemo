@@ -1,7 +1,3 @@
-How to set up playright infiially: 
-npm init playwright@latest
-
-
 Inside that directory, you can run several commands:
 
   npx playwright test tests/Demo.spec.js --project=chromium  --headed

@@ -5,3 +5,4 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+/tests_python_pytest/.pytest_cache/
