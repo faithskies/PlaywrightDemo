@@ -6,3 +6,4 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /tests_python_pytest/.pytest_cache/
+/tests_python_pytest/uitestingplaygroup/pytest.ini

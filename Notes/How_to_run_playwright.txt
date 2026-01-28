@@ -18,6 +18,12 @@ Inside that directory, you can run several commands:
   npx playwright test  --headed
     Runs the test in the GUI
 
+  npx playwright test --screenshot=on   
+      --screenshot=only on failure
+
+  npx playwright test --video=on 
+    --video=Retain-on-failure
+
   npx playwright test tests/Demo.spec.js
   npx playwright test Demo
     Runs the tests in a specific file.

@@ -3,7 +3,7 @@ from playwright.sync_api import expect
 
 def test_google_search(page):   # Test_ so pytest receognizes it, page is automatically injected from Playwright
     page.wait_for_timeout(3000) #if you want it to wait  3 sec before going to the site
-    page.goto("https://www.google.com/ncr")
+    page.goto("http://uitestingplayground.com/sampleapp")
     
     #if there is a cookie popup
     try: 
