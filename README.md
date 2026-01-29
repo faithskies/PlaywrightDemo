@@ -8,3 +8,4 @@ Example setup of Playwright for personal training
 - tests_javascript : contains some demo Javascript tests 
 - tests_python : for python Playwright tests - note this does NOT include pytest
 - tests_python_pytest : for python Playwright tests using pytest
+- tests_python_behave : using BDD & playwright together

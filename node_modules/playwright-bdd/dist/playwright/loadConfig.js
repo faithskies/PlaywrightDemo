@@ -1,0 +1,30 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.loadConfig = loadConfig;
+exports.resolveConfigLocation = resolveConfigLocation;
+/**
+ * Loading Playwright config.
+ * See: https://github.com/microsoft/playwright/blob/main/packages/playwright-test/src/common/configLoader.ts
+ */
+const esmLoader_1 = require("./esmLoader");
+const utils_1 = require("./utils");
+async function loadConfig(cliConfigPath) {
+    const { loadConfig } = (0, utils_1.requirePlaywrightModule)('lib/common/configLoader.js');
+    const configLocation = resolveConfigLocation(cliConfigPath);
+    // Since PW 1.53 registerEsmLoader is called inside loadConfig.
+    // See: https://github.com/microsoft/playwright/commit/b536b38a788b309c019beedd72b25c3d94d7689d
+    if (utils_1.playwrightVersion < '1.53')
+        (0, esmLoader_1.registerESMLoader)();
+    // We perform full config processing from Playwright,
+    // to correctly set ESM loader configuration.
+    const fullConfig = await loadConfig(configLocation);
+    return {
+        ...configLocation,
+        fullConfig,
+    };
+}
+function resolveConfigLocation(cliConfigPath) {
+    const { resolveConfigLocation } = (0, utils_1.requirePlaywrightModule)('lib/common/configLoader.js');
+    return resolveConfigLocation(cliConfigPath);
+}
+//# sourceMappingURL=loadConfig.js.map

@@ -1,18 +1,27 @@
 
-Notes with Visual Studio
-- useful extenion : Black Formatter
-
-- When using python with Playwright you should decide if you want to use: 
-- pure playwright 
--- How to install:  pip install playwright
--- How to run:  python first_test.py
-
--  pytest-playwright 
--- write tests with pytest structure, uses fixtures like page, browser etc 
--- How to install: pip install pytest-playwright
--- How to run: python test_google.py --headed 
 
 
-Useful commands 
+# Locator Notes:   
+https://playwright.dev/python/docs/locators
+    - page.get_by_role() to locate by explicit and implicit accessibility attributes.
+    - page.get_by_text() to locate by text content.
+    - page.get_by_label() to locate a form control by associated label's text.
+    - page.get_by_placeholder() to locate an input by placeholder.
+    - page.get_by_alt_text() to locate an element, usually image, by its text alternative.
+    - page.get_by_title() to locate an element by its title attribute.
+    - page.get_by_test_id() to locate an element based on its data-testid attribute (other attributes can be configured).
 
--- pip list  ~ to see a list of installed tools
+
+## Sync 
+- page.get_by_label("User Name").fill("John")
+- page.get_by_label("Password").fill("secret-password")
+- page.get_by_role("button", name="Sign in").click()
+- expect(page.get_by_text("Welcome, John!")).to_be_visible()
+
+
+## Async 
+- await page.get_by_label("User Name").fill("John")
+- await page.get_by_label("Password").fill("secret-password")
+- await page.get_by_role("button", name="Sign in").click()
+- await expect(page.get_by_text("Welcome, John!")).to_be_visible()
+
