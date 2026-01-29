@@ -1,8 +1,0 @@
-
-# Playwright
-node_modules/
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
-/tests_python_pytest/.pytest_cache/

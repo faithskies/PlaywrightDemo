@@ -1,4 +1,4 @@
-# PlaywrightDemo
+# Playwright examples 
 
 Some example tests in Javascript 
 
