@@ -1,4 +1,4 @@
-# PlaywrightDemo
+# Pure Playwright tests written in python 
 Example setup of Playwright in Python 
 
 
